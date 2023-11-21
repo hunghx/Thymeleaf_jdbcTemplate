@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!-- để sử dụng cú pháp thymeleaf thì phải thêm dòng khai báo namespace -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- hiển thị biểu -->
+<!--th:text  dùng để hiển thị văn bản -->
+<h2>Tên : <span th:text="${name}"></span></h2>
+<h3>Tuổi : <span th:text="${age}"></span></h3>
+<!--<a th:href="@{/find(${age})}">1</a>-->
+<a th:href="@{'/find/'+${age}}">2</a>
+<a th:href="@{|/find/${age}|}">3</a>
+<h3>Giới tính : <span th:text="${sex?'Nam':'Nữ'}"></span></h3>
+<!-- th:utext  cho phép hiển thị html-->
+<th:block th:utext="${html}"></th:block>
+
+<p th:text="${#calendars.format(today,'dd-MM-yyyy')}"></p>
+<!--<p th:text="${#temporals.format(today,'dd MM yyyy')}"></p>-->
+<!-- đổ message của file property -->
+<h2 th:text="#{message.title}"></h2>
+<p th:text="#{message.content}"></p>
+<!--Lấy ra object-->
+<th:block th:object="${student}">
+    <li><a href="" th:text="*{id}"></a></li>
+    <li><a href="" th:text="*{name}"></a></li>
+    <li><a href="" th:text="*{age}"></a></li>
+<!--    <li><a href="" th:text="*{id}?'Nam':'Nữ'"></a></li>-->
+<!--    th:if  câu lệnh điều kiện-->
+    <li th:if="*{sex}" th:text="Nam"></li>
+    <li th:unless="*{sex}" th:text="Nam"></li>
+
+<!--    Switch case -->
+    <p th:switch="*{sex}">
+        <a th:case="true" href="" th:text="nam"></a>
+        <a th:case="false" href="" th:text="nữ"></a>
+        <a th:case="*" href="" th:text="BD"></a>
+    </p>
+
+</th:block>
+
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 th:text="${id}"></h1>
+
+<!-- vòng lặp -->
+<!-- không chỉ hỗ trợ duyệt đanh sách mà còn duyệt object-->
+<div th:each="str,loop:${list}">
+    <li th:text="${loop.count+'-'+str}"></li>
+</div>
+</body>
+</html>
